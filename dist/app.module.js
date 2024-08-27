@@ -10,37 +10,23 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const nest_keycloak_connect_1 = require("nest-keycloak-connect");
-const core_1 = require("@nestjs/core");
+const auth_module_1 = require("./auth/auth.module");
+const users_module_1 = require("./users/users.module");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [nest_keycloak_connect_1.KeycloakConnectModule.register({
-                authServerUrl: 'http://localhost:8080',
-                realm: 'cloud-backup-system',
-                clientId: 'api-service',
-                secret: "eRtr2j2nFVIPj2gCtymPqp9NjIyCpPsS",
-                policyEnforcement: nest_keycloak_connect_1.PolicyEnforcementMode.PERMISSIVE,
-                tokenValidation: nest_keycloak_connect_1.TokenValidation.ONLINE,
-            })],
-        controllers: [app_controller_1.AppController],
-        providers: [
-            {
-                provide: core_1.APP_GUARD,
-                useClass: nest_keycloak_connect_1.AuthGuard,
-            },
-            {
-                provide: core_1.APP_GUARD,
-                useClass: nest_keycloak_connect_1.ResourceGuard,
-            },
-            {
-                provide: core_1.APP_GUARD,
-                useClass: nest_keycloak_connect_1.RoleGuard,
-            },
-            app_service_1.AppService
+        imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
+            auth_module_1.AuthModule,
+            users_module_1.UsersModule
         ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
