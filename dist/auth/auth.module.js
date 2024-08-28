@@ -15,6 +15,7 @@ const jwt_1 = require("@nestjs/jwt");
 const constants_1 = require("./constants");
 const core_1 = require("@nestjs/core");
 const auth_guard_1 = require("./auth.guard");
+const roles_guard_1 = require("./roles/roles.guard");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -34,6 +35,10 @@ exports.AuthModule = AuthModule = __decorate([
             {
                 provide: core_1.APP_GUARD,
                 useClass: auth_guard_1.AuthGuard
+            },
+            {
+                provide: core_1.APP_GUARD,
+                useClass: roles_guard_1.RolesGuard,
             },
         ]
     })

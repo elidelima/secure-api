@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
+const role_enum_1 = require("../auth/roles/role.enum");
 let UsersService = class UsersService {
     constructor() {
         this.users = [
@@ -15,11 +16,13 @@ let UsersService = class UsersService {
                 userId: 1,
                 username: 'john',
                 password: 'changeme',
+                roles: [role_enum_1.Role.Admin],
             },
             {
                 userId: 2,
                 username: 'maria',
                 password: 'guess',
+                roles: [role_enum_1.Role.User],
             },
         ];
     }
