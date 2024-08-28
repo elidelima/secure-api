@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  backup_system_db:
+    image: mysql:8.0
+    platform: linux/amd64
+    container_name: backup_system_db
+    restart: always
+    tty: true
+    environment:
+      - MYSQL_DATABASE=backup_system
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/Users/elilima/volumes/service_db_mysql
+
