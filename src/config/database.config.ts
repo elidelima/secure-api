@@ -13,5 +13,6 @@ export default registerAs(
     entities: [__dirname + '/../**/*.entity{.ts,.js}',],
     autoLoadEntities: true,
     synchronize: true,
+    // logging: true,
   }),
 );

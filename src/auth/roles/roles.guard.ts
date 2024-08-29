@@ -23,7 +23,7 @@ export class RolesGuard implements CanActivate {
         const { user } = context.switchToHttp().getRequest();
         // We could rely on the context and send the roles together with the credntials
         // That would save one query to the DB to verify the roles
-        const { roles: userRoles } = await this.usersService.findOne(user.username);
-        return requiredRoles.some((role) => userRoles?.includes(role));
+        const { role: userRole } = await this.usersService.findOne(user.username);
+        return requiredRoles.some((role) => role === userRole);
     }
 }
