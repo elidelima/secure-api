@@ -11,7 +11,7 @@ export class AuthService {
 
   async signIn(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-
+    
     // TODO use bcrypt when comparing with saved password
     if (user?.password !== pass) {
       throw new UnauthorizedException();

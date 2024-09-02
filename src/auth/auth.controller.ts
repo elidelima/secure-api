@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard, Public } from './auth.guard';
 import { Roles } from './roles/roles.decorator';
 import { Role } from './roles/role.enum';
+import { LoginDto } from './login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -11,7 +12,7 @@ export class AuthController {
     @Public()
     @HttpCode(HttpStatus.OK)
     @Post('login')
-    signIn(@Body() signInDto: Record<string, any>) {
+    signIn(@Body() signInDto: LoginDto) {
         return this.authService.signIn(signInDto.username, signInDto.password);
     }
 
