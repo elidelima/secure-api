@@ -6,18 +6,18 @@ export class User {
     @PrimaryGeneratedColumn("increment")
     id: number;
 
-    @Column({ name: "username" })
+    @Column({ name: "username", nullable: false })
     username: string;
 
-    @Column({ name: "email", unique: true })
+    @Column({ name: "email", nullable: false, unique: true })
     email: string;
 
-    @Column({ name: "password" })
+    @Column({ name: "password", nullable: false })
     password: string;
 
-    @Column({ name: "full_name" })
+    @Column({ name: "full_name", nullable: false })
     fullName: string;
 
-    @Column({ name: 'role', enum: Role })
+    @Column({ name: 'role', enum: Role, nullable: false })
     role: Role;
 }
