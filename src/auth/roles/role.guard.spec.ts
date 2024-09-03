@@ -72,7 +72,7 @@ describe('RoleGuard', () => {
             expect(usersService.findOne).toHaveBeenCalledWith('username');
         })
 
-        it.only('should grant access', async () => {
+        it('should grant access', async () => {
             // Given
             const user = { role: 'user' } as User;
             jest.spyOn(reflector, 'getAllAndOverride').mockReturnValue(['user']);
