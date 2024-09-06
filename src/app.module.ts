@@ -1,4 +1,4 @@
-import { Inject, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -14,7 +14,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig, databaseConfig],
-      envFilePath: '.env'
+      envFilePath: process.env.NODE_ENV === 'test'
+        ? '.env.test'
+        : '.env'
     }),
     TypeOrmModule.forRoot(databaseConfig()),
     AuthModule,
@@ -24,7 +26,5 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [AppService],
 })
 export class AppModule {
-  constructor() {
-    console.log(process.env.API_PORT);
-  }
+  constructor() {}
 }

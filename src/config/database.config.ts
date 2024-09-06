@@ -5,7 +5,7 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
 
-const mysqlConfig: TypeOrmModuleOptions = {
+export const mysqlConfig: TypeOrmModuleOptions = {
   type: 'mysql',
   host: process.env.DATABASE_HOST,
   port: parseInt(process.env.DATABASE_PORT, 10) || 3306,
