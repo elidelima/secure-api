@@ -5,7 +5,12 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
 
-export const mysqlConfig: TypeOrmModuleOptions = {
+type MyDataSourceOptions = DataSourceOptions & TypeOrmModuleOptions & {
+  seeds?: string[],
+  factories?: string[],
+}
+
+export const mysqlConfig: MyDataSourceOptions = {
   type: 'mysql',
   host: process.env.DATABASE_HOST,
   port: parseInt(process.env.DATABASE_PORT, 10) || 3306,
@@ -14,6 +19,7 @@ export const mysqlConfig: TypeOrmModuleOptions = {
   database: process.env.DATABASE_NAME,
   entities: [__dirname + '/../**/*.entity{.ts,.js}',],
   migrations: [__dirname + '/../database/migrations/*.ts',],
+  seeds: [__dirname + '/../**/seeds/*{.ts,.js}',],
   // logging: true,
 }
 
@@ -22,4 +28,4 @@ export default registerAs(
   (): TypeOrmModuleOptions => mysqlConfig,
 );
 
-export const connectionSource = new DataSource(mysqlConfig as DataSourceOptions);
+export const connectionSource = new DataSource(mysqlConfig);
