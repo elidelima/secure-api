@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { mockRepositoryFactory } from 'src/helpers/test/mock-repository.factory';
+import { UserCreateDto } from './model/user-create.dto';
+import * as bcrypt from 'bcrypt';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -40,5 +42,26 @@ describe('UsersService', () => {
       expect(queryBuilder.where).toHaveBeenCalledTimes(1);
       expect(queryBuilder.orWhere).toHaveBeenCalledTimes(1);
     });
+  })
+
+  describe('create', () => {
+    it.only('should create new user and return id', async () => {
+      // Given
+      const dto: UserCreateDto = {
+        password: 'password',
+        username: 'username',
+        fullName: 'fullName',
+        email: 'email',
+      };
+      jest.spyOn(userRepository, 'save').mockResolvedValueOnce({ id: 1 } as User);
+      jest.spyOn(bcrypt, 'hash').mockImplementation(() => 'hashedPassword');
+      const expectedResult = 1;
+    
+      // When
+      const result = await service.create(dto);
+
+      // Then
+      expect(result).toEqual(expectedResult);
+    })
   })
 });
