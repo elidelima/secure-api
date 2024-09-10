@@ -1,13 +1,33 @@
 
 ## Description
 
-Project built with [Nest](https://github.com/nestjs/nest) framework TypeScriptProvider.
-
+Boilerplate project built with [NestJS](https://github.com/nestjs/nest) framework.
+* Authentication Enabled (AuthGuard & RoleGuard)
+* E2E tests configured
 
 ## Project setup
 
 ```bash
 $ npm install
+```
+
+## Database setup
+```bash
+# create database
+$ npm run db:create
+
+# run migrations
+$ npm run migration:run
+
+# revert migration
+$ npm run migration:revert
+
+# create new migration
+$ npm run migration:generate --name=migration_name
+
+# create new seed (seeds are the same as migrations, for control reason, they are just being kept in a different folder)
+$ npm run seed:generate --name=seed_name
+
 ```
 
 ## Compile and run the project
@@ -36,24 +56,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Database
-```bash
-# create database
-$ npm run db:create
-
-# run migrations
-$ npm run migration:run
-
-# revert migration
-$ npm run migration:revert
-
-# create new migration
-$ npm run migration:generate --name=migration_name
-
-# create new seed (seeds are the same as migrations, for control reason, they are just being kept in a different folder)
-$ npm run seed:generate --name=seed_name
-
-```
 
 ## Resources
 
