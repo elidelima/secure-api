@@ -2,6 +2,7 @@ import { mysqlConfig } from "src/config/database.config";
 import { DataSource } from "typeorm";
 import { createDatabase, dropDatabase } from 'typeorm-extension';
 import { MysqlConnectionOptions } from "typeorm/driver/mysql/MysqlConnectionOptions";
+import loadUserCredentials from "./user-credentials";
 
 export async function createTestDataSource(
     dbOptions: MysqlConnectionOptions,
@@ -33,11 +34,12 @@ export class TestDatabaseConfig {
 
         const dataSource = await createTestDataSource(this.dbConfigOptions);
 
-        console.log(`Running migrations`);
+        console.log(`Running migrations & seeds`);
         await dataSource.runMigrations({ transaction: 'all' });
-        //TODO seed database
-        await dataSource.destroy();
 
+        await loadUserCredentials(dataSource)
+        
+        await dataSource.destroy();
     }
 
     async dropDatabase(dropAll = false) {

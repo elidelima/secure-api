@@ -1,6 +1,6 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": ".",
+  "rootDir": "../",
   "testEnvironment": "node",
   "testRegex": "\\.e2e-spec\\.ts$",
   "transform": {
@@ -10,6 +10,6 @@
     "^src/(.*)": "<rootDir>/../src/$1"
   },
   "openHandlesTimeout": 10000,
-  "globalSetup": "<rootDir>/setup.ts",
-  "globalTeardown": "<rootDir>/teardown.ts"
+  "globalSetup": "<rootDir>/config/setup.ts",
+  "globalTeardown": "<rootDir>/config/teardown.ts"
 }

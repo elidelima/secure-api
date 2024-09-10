@@ -2,15 +2,15 @@ import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { config as dotenvConfig } from 'dotenv';
+import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
-dotenvConfig({ path: '.env' });
+dotenvConfig({
+  path: process.env.NODE_ENV === 'test'
+    ? 'test.env'
+    : '.env'
+});
 
-type MyDataSourceOptions = DataSourceOptions & TypeOrmModuleOptions & {
-  seeds?: string[],
-  factories?: string[],
-}
-
-export const mysqlConfig: MyDataSourceOptions = {
+export const mysqlConfig: MysqlConnectionOptions = {
   type: 'mysql',
   host: process.env.DATABASE_HOST,
   port: parseInt(process.env.DATABASE_PORT, 10) || 3306,
@@ -18,8 +18,10 @@ export const mysqlConfig: MyDataSourceOptions = {
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   entities: [__dirname + '/../**/*.entity{.ts,.js}',],
-  migrations: [__dirname + '/../database/migrations/*.ts',],
-  seeds: [__dirname + '/../**/seeds/*{.ts,.js}',],
+  migrations: [
+    __dirname + '/../database/migrations/*.ts',
+    __dirname + '/../**/seeds/*{.ts,.js}',
+  ],
   // logging: true,
 }
 

@@ -2,6 +2,7 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
+import userCredentials from './config/user-tokens.json';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;

@@ -26,7 +26,7 @@ $ npm run start:prod
 ## Run tests
 
 ```bash
-# unit tests
+# unit tests˚
 $ npm run test
 
 # e2e tests
@@ -34,6 +34,25 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## Database
+```bash
+# create database
+$ npm run db:create
+
+# run migrations
+$ npm run migration:run
+
+# revert migration
+$ npm run migration:revert
+
+# create new migration
+$ npm run migration:generate --name=migration_name
+
+# create new seed (seeds are the same as migrations, for control reason, they are just being kept in a different folder)
+$ npm run seed:generate --name=seed_name
+
 ```
 
 ## Resources

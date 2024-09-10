@@ -12,7 +12,6 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) { }
 
-  // TODO add test
   async create(dto: UserCreateDto): Promise<number> {
     const hashedPassword = await bcrypt.hash(dto.password, 10);
     const { id } = await this.userRepository.save({ 

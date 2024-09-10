@@ -14,9 +14,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig, databaseConfig],
-      envFilePath: process.env.NODE_ENV === 'test'
-        ? '.env.test'
-        : '.env'
     }),
     TypeOrmModule.forRoot(databaseConfig()),
     AuthModule,
@@ -26,5 +23,5 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [AppService],
 })
 export class AppModule {
-  constructor() {}
+  constructor() { }
 }

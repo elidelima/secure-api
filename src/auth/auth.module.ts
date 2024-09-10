@@ -21,7 +21,7 @@ import { ConfigService } from '@nestjs/config';
         return {
           secret: configService.get('jwtSecret'),
           global: true,
-          signOptions: { expiresIn: '60s' },
+          signOptions: { expiresIn: '1000s' },
         }
       },
       inject: [ConfigService]
