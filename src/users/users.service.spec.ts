@@ -45,7 +45,7 @@ describe('UsersService', () => {
   })
 
   describe('create', () => {
-    it.only('should create new user and return id', async () => {
+    it('should create new user and return id', async () => {
       // Given
       const dto: UserCreateDto = {
         password: 'password',
