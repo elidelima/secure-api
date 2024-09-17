@@ -2,6 +2,8 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
+import * as userCredentials from './config/user-tokens.json';
+import { Role } from 'src/auth/roles/role.enum';
 
 describe('UserController (e2e)', () => {
   let app: INestApplication;
@@ -88,6 +90,46 @@ describe('UserController (e2e)', () => {
         expect.objectContaining({ id: expect.any(Number) })
       );
     });
+  });
 
+  describe.only('/users GET', () => {
+    it('should return 401 when no credentials informed', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/users')
+
+      expect(response.statusCode).toEqual(401);
+      expect(response.body.message).toEqual('Unauthorized');
+    });
+
+    it.only('should be forbidden for user role', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/users')
+        .set('Authorization', `Bearer ${userCredentials.user.access_token}`)
+
+      expect(response.statusCode).toEqual(403);
+      expect(response.body.message).toEqual('Forbidden resource');
+    });
+
+    it('should return a list with users when called by admin', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/users')
+        .set('Authorization', `Bearer ${userCredentials.admin.access_token}`)
+
+      expect(response.statusCode).toEqual(200);
+      expect(response.body).toHaveLength(2);
+      expect(response.body).toEqual(
+        expect.arrayContaining(
+          [
+            expect.objectContaining({
+              id: expect.any(Number),
+              username: expect.any(String),
+              email: expect.any(String),
+              fullName: expect.any(String),
+              role: expect.stringMatching(new RegExp(Object.values(Role).join('|'))),
+            })
+          ],
+        )
+      );
+    });
   });
 });

@@ -6,6 +6,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { mockRepositoryFactory } from 'src/helpers/test/mock-repository.factory';
 import { UserCreateDto } from './model/user-create.dto';
 import * as bcrypt from 'bcrypt';
+import { UserDto } from './model/user.dto';
+import { Role } from 'src/auth/roles/role.enum';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -64,4 +66,36 @@ describe('UsersService', () => {
       expect(result).toEqual(expectedResult);
     })
   })
+
+  describe('findAll', () => {
+    it('should query database and find all users and return filtered dto', async () => {
+      // Given
+      const users = [ {
+        id: 1,
+        username: 'username',
+        email: 'email',
+        fullName: 'fullName',
+        password: 'password',
+        role: Role.User,
+      }]
+
+      jest.spyOn(userRepository, 'find').mockResolvedValueOnce(users);
+
+      const expectedUsers: UserDto[] = [
+        {
+          id: 1,
+          username: 'username',
+          email: 'email',
+          fullName: 'fullName',
+          role: Role.User,
+        }
+      ];
+
+      // When
+      const response = await service.findAll();
+
+      expect(response).toEqual(expectedUsers);
+      expect(userRepository.find).toHaveBeenCalledTimes(1);
+    });
+  });
 });

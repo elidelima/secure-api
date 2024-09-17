@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { UserCreateDto } from './model/user-create.dto';
 import * as bcrypt from 'bcrypt';
+import { UserDto } from './model/user.dto';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class UsersService {
@@ -27,5 +29,10 @@ export class UsersService {
       .orWhere('email = :email', { email: usernameOrEmail })
       .getOne();
     return user;
+  }
+
+  async findAll(): Promise<UserDto[]>{
+    const users = await this.userRepository.find();
+    return users.map((user) => plainToClass(UserDto, user));
   }
 }
