@@ -4,6 +4,7 @@ import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { UnauthorizedException } from '@nestjs/common';
 import { User } from 'src/users/user.entity';
+import * as bcrypt from 'bcrypt';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -30,7 +31,7 @@ describe('AuthService', () => {
   });
 
   describe('signIn', () => {
-    const user = { id: 1, username: 'username', password: 'password' } as User;
+    const user = { id: 1, username: 'username', password: bcrypt.hashSync('password', 10) } as User;
     
     it('should throw unauthorized exception when password is invalid', () => {
       jest.spyOn(userService, "findOne").mockResolvedValue(user);

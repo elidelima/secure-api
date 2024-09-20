@@ -1,8 +1,8 @@
 {
   "admin": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MjY1OTEyNzEsImV4cCI6MTcyNjU5MjI3MX0.OUaMCRnxtqvrfvGRldhSAHKws4kIXuPVu8IJDjmUG9U"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MjY4NDU2NTYsImV4cCI6MTcyNjg0NjY1Nn0.HEriCa0g8DxlSq5N6VgWp0WLf8nrnuJBrDSZe1pdJeo"
   },
   "user": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidXNlciIsImlhdCI6MTcyNjU5MTI3MSwiZXhwIjoxNzI2NTkyMjcxfQ.X4ly6FMPIGznBaTuIFXM6yokIdWu4539_Hk6rOO2wS4"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidXNlciIsImlhdCI6MTcyNjg0NTY1NiwiZXhwIjoxNzI2ODQ2NjU2fQ.MhGeuYe6hvnvoY0XOMN_Sb12lbGePJN3O72Po2GXEx4"
   }
 }

@@ -9,4 +9,8 @@ dotenvConfig({
 export default () => ({
   apiPort: parseInt(process.env.API_PORT, 10) || 3000,
   jwtSecret: process.env.JWT_SECRET,
+  responseTime: {
+    suffix: false,
+    header: 'x-response-time'
+  }
 });

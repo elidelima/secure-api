@@ -7,6 +7,7 @@ import { plainToClass } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { Role } from 'src/auth/roles/role.enum';
 import { UserDto } from './model/user.dto';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 describe('UserController', () => {
   let app: TestingModule;
@@ -16,6 +17,13 @@ describe('UserController', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [UserControler],
+      providers: [{
+        provide: CACHE_MANAGER,
+        useValue: {
+          get: () => 'any value',
+          set: () => jest.fn(),
+        },
+      },]
     })
       .useMocker((token) => {
         if (token === UsersService) {

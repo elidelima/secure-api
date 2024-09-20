@@ -11,5 +11,10 @@ interface EnvironmentVariables {
         entities: string;
         autoLoadEntities: boolean;
         synchronize: boolean;
-    }
+    },
+    responseTime: {
+        header: string;
+        suffix: boolean;
+    },
+    cache: {}
 }

@@ -8,9 +8,15 @@ import databaseConfig from './config/database.config';
 
 import appConfig from './config/app.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
+    CacheModule.register({ 
+      isGlobal: true, 
+      ttl: 5 * 60 * 60 * 1000,
+      max: 10
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig, databaseConfig],
