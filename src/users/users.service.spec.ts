@@ -13,21 +13,18 @@ import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 describe('UsersService', () => {
   let service: UsersService;
   let userRepository: Repository<User>;
-  let cacheManager: Cache;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UsersService,
         { provide: getRepositoryToken(User), useFactory: mockRepositoryFactory },
-        { provide: CACHE_MANAGER, useValue: { del: () => jest.fn() }}
       ],
     })
     .compile();
 
     service = module.get<UsersService>(UsersService);
     userRepository = module.get<Repository<User>>(getRepositoryToken(User));
-    cacheManager = module.get<Cache>(CACHE_MANAGER);
   });
 
   describe('findOne', () => {
@@ -61,7 +58,6 @@ describe('UsersService', () => {
       };
       jest.spyOn(userRepository, 'save').mockResolvedValueOnce({ id: 1 } as User);
       jest.spyOn(bcrypt, 'hash').mockImplementation(() => 'hashedPassword');
-      jest.spyOn(cacheManager, 'del').mockImplementation(() => Promise.resolve());
 
       const expectedResult = 1;
     

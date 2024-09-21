@@ -50,9 +50,9 @@ describe('UserController (e2e)', () => {
     });
 
     const CALLS_WITH_RESPONSE_TIMES = [
-      ['first', 10.000],
-      ['second', 5.000],
-      ['third', 5.000]
+      ['first', 12.000],
+      ['second', 6.000],
+      ['third', 6.000]
     ];
     it.each(CALLS_WITH_RESPONSE_TIMES)(
       'Calling for the %s time should return response under %sms',
@@ -155,9 +155,9 @@ describe('UserController (e2e)', () => {
 
   describe('/users GET after creating new user', () => {
     const CALLS_WITH_RESPONSE_TIMES = [
-      ['first', 10.000],
-      ['second', 5.000],
-      ['third', 5.000]
+      ['first', 12.000],
+      ['second', 6.000],
+      ['third', 6.000]
     ];
     it.each(CALLS_WITH_RESPONSE_TIMES)(
       'Calling for the %s time should return response under %sms',

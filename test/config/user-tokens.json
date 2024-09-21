@@ -1,8 +1,8 @@
 {
   "admin": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MjY4NDU2NTYsImV4cCI6MTcyNjg0NjY1Nn0.HEriCa0g8DxlSq5N6VgWp0WLf8nrnuJBrDSZe1pdJeo"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MjY5Mjk3NjcsImV4cCI6MTcyNjkzMDc2N30.aFd-TK_jV4mU3aaWc4vJLVEguwYOpm-faAoHLwHfzmQ"
   },
   "user": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidXNlciIsImlhdCI6MTcyNjg0NTY1NiwiZXhwIjoxNzI2ODQ2NjU2fQ.MhGeuYe6hvnvoY0XOMN_Sb12lbGePJN3O72Po2GXEx4"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidXNlciIsImlhdCI6MTcyNjkyOTc2OCwiZXhwIjoxNzI2OTMwNzY4fQ.owGRtKWc6Qhtpp_s3oyohXVlzsizwjZEsMnqJP8s7sg"
   }
 }
